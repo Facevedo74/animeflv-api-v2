@@ -1,6 +1,7 @@
-import { Cheerio, type Element } from "cheerio";
+import { Cheerio } from "cheerio";
+import type { AnyNode } from "domhandler";
 
-export function getNextAndPrevPages(selector: Cheerio<Element>): {
+export function getNextAndPrevPages(selector: Cheerio<AnyNode>): {
     foundPages: number
     previousPage: string | null
     nextPage: string | null

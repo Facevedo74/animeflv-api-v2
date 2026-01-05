@@ -29,19 +29,19 @@ export async function getAnimeInfo(animeId: string): Promise<AnimeData | null> {
             url: CloudscraperOptions.uri
         };
 
-        for (let i = 1; i <= JSON.parse($('script').eq(15).text().match(/episodes = (\[\[.*\].*])/)?.[1] as string).length; i++) {
-            animeInfo.episodes.push({
-                number: i,
-                url: 'https://www3.animeflv.net/ver/' + animeId + '-' + i
-            });
-        };
+        // for (let i = 1; i <= JSON.parse($('script').eq(15).text().match(/episodes = (\[\[.*\].*])/)?.[1] as string).length; i++) {
+        //     animeInfo.episodes.push({
+        //         number: i,
+        //         url: 'https://www3.animeflv.net/ver/' + animeId + '-' + i
+        //     });
+        // };
         
         $('body > div.Wrapper > div > div > div.Ficha.fchlt > div.Container > div:nth-child(3) > span').each((i, el) => {
             animeInfo.alternative_titles.push($(el).text());
         });
 
         return animeInfo;
-    } catch {
+    } catch(ex) {
         return null
     }
 }
